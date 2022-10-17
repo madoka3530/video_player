@@ -1,0 +1,21 @@
+name: video_player_platform_interface
+description: A common platform interface for the video_player plugin.
+homepage: https://github.com/flutter/plugins/tree/master/packages/video_player/video_player_platform_interface
+# NOTE: We strongly prefer non-breaking changes, even at the expense of a
+# less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
+version: 2.0.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  meta: ^1.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.2.0
+  pedantic: ^1.11.1
+
+environment:
+  sdk: ">=2.14.0 <3.0.0"
+  flutter: ">=2.0.0"
