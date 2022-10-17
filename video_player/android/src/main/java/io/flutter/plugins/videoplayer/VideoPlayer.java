@@ -12,6 +12,7 @@ import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.MediaMetadata;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.Player.Listener;
@@ -39,6 +40,7 @@ import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.text.TextRenderer;
 import com.google.android.exoplayer2.text.TextOutput;
 import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.metadata.Metadata;
 import com.google.android.exoplayer2.metadata.MetadataRenderer;
 import com.google.android.exoplayer2.metadata.MetadataOutput;
 import com.google.android.exoplayer2.metadata.id3.TextInformationFrame;
@@ -201,22 +203,25 @@ final class VideoPlayer {
 //        eventSink.success(event);
 //      }
 //    });
-//    exoPlayer.addMetadataOutput((MetadataOutput) metadata -> {
-//      if (metadata != null && metadata.length() > 0 ) {
-//        final com.google.android.exoplayer2.metadata.Metadata.Entry entry = metadata.get(0);
-//        if (entry instanceof TextInformationFrame){
-//          Map<String, Object> event = new HashMap<>();
-//          event.put("event", "metadata");
-//          event.put("values", ((TextInformationFrame)entry).value);
-//          eventSink.success(event);
-//        }
-//      }
-//    });
+
     exoPlayer.addListener(
         new Listener() {
           @Override
           public void onCues(final List<Cue> cueList) {
 //            playerSubtitleView.setCues(cueList);
+          }
+
+          @Override
+          public void onMetadata​(final Metadata metadata) {
+            if (metadata.length() > 0) {
+              final com.google.android.exoplayer2.metadata.Metadata.Entry entry = metadata.get(0);
+              if (entry instanceof TextInformationFrame){
+                Map<String, Object> event = new HashMap<>();
+                event.put("event", "metadata");
+                event.put("values", ((TextInformationFrame)entry).value);
+                eventSink.success(event);
+              }
+            }            
           }
 
           @Override
