@@ -279,7 +279,7 @@ class VideoPlayerApi {
         message: 'Host platform returned null value for non-null return value.',
       );
     } else {
-      return (replyMap['result'] as TextureMessage?)!;
+      return TextureMessage._fromMap(replyMap['result'] as Map);
     }
   }
 
