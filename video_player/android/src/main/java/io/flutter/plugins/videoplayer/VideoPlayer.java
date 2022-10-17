@@ -85,7 +85,7 @@ final class VideoPlayer {
     ((DefaultTrackSelector) trackSelector).setParameters(new DefaultTrackSelector.ParametersBuilder()
             .setRendererDisabled(C.TRACK_TYPE_VIDEO, false)
             .build());
-    ExoPlayer exoPlayer = new ExoPlayer.Builder(context).build();
+    exoPlayer = new ExoPlayer.Builder(context).build();
 
     Uri uri = Uri.parse(dataSource);
     DataSource.Factory dataSourceFactory;
