@@ -545,18 +545,8 @@ class _VideoAppLifeCycleObserver extends Object with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.paused:
-        _wasPlayingBeforePause = _controller.value.isPlaying;
-        _controller.pause();
-        break;
-      case AppLifecycleState.resumed:
-        if (_wasPlayingBeforePause) {
-          _controller.play();
-        }
-        break;
-      default:
-    }
+    // 本来はアプリをバックグラウンドへ移行した際に曲を停止するsyロイがあったが、
+    // MixBox　では停止させないため削除した。
   }
 
   void dispose() {
